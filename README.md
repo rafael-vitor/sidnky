@@ -22,3 +22,10 @@ Contributions with links and tips on how to learn anything on the list are very 
       * Oficial docs - https://redux.js.org/
       * Collection of learning material - https://github.com/brillout/awesome-redux#learning-material
       * Getting started guide with redux creator Dan Abramov https://egghead.io/courses/getting-started-with-redux
+      
+
+* **Scala** - Combines object-oriented and functional programming in one concise, high-level language. 
+    * Links and tips:
+      * Oficial docs - https://www.scala-lang.org/
+      * Free book: https://underscore.io/books/essential-scala/
+      * Collection of learning material - https://github.com/lauris/awesome-scala#learning-scala
