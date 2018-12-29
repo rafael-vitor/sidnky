@@ -1,2 +1,2 @@
 # sidnky
-Stuff I Do Not Know *Yet*
+Stuff I Do Not Know **Yet**
