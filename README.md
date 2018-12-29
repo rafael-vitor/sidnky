@@ -8,6 +8,11 @@ Every item should fit the following template:
   * **Name** - Short description
     * Links and tips:
       * Oficial docs - https://motherfuckingwebsite.com/
-      * Collection of learning material: http://bettermotherfuckingwebsite.com/
+      * Collection of learning material - http://bettermotherfuckingwebsite.com/
     * Optional Comment
 
+
+* **Redux** - State container for Javascript apps
+    * Links and tips:
+      * Oficial docs - https://redux.js.org/
+      * Collection of learning material - https://github.com/brillout/awesome-redux#learning-material
