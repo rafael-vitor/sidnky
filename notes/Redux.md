@@ -12,30 +12,37 @@ tags: [Notebooks/Redux]
   Actions are plain objects describing the changes
 
   An action **should** have a type property:
+  
 ```javascript
     { type: "INCREMENT" }
     { type: "DECREMENT" }
 ```
   and its required properties
-
+  
+```javascript
     { type: "INCREMENT", index: 3 }
     { type: "SET_FILTER", filter: "ACTIVE" }
+```
   
 #### Pure functions
     
   Functions that, given the same parameters, will return the same value
   
+```javascript  
     function square(x) {
       return x * x;
     }
-
+```	
     
  Pure functions also don't modify the values passed to them value value
  
+```javascript  
     function squareAll(items) {
       return items.map(square)
       // returns a new array
     }
+```    
+
     
  On the opposite, impure functions may call the database or the network, they may have side effects, they may operate on the DOM, and they may override the values that you pass to them.
     
@@ -47,8 +54,10 @@ tags: [Notebooks/Redux]
     0
      
  and the action being dispatched:
- 
+
+ ```javascript  
     { type: "INCREMENT" }
+ ```    
   
   and returns the next state of your app:
   
@@ -85,23 +94,30 @@ tags: [Notebooks/Redux]
 
   The store binds together the 3 principles of Redux. It holds the current application state tree, lets you dispatch actions and when you create it, you need to specify the reducer that tells how the state will be updated with actions.
   
+  ```javascript  
     import { createStore } from redux;
     const store = createStore(counter);
+  ```    
     
   The store has 3 important methods:
   
+  ```javascript  
     store.getState() // 0
+  ```  
     
   The first method is called `getState`. It retrieves the current `state` of the Redux store.
   Here we are getting 0 as it is the defined initial state of our application.
   
   Then we have `dispatch`. It lets you dispatch actions to change the state.
   
+  ```javascript  
     store.dispatch({ type: 'INCREMENT' });
     store.getState(); // 1
+  ```    
     
   The third store method is `subscribe`. It lets you register a callback that the redux store will always call every time an action has been dispatched so you can update the UI of your app to reflect the current state.
   
+  ```javascript  
     const render = () => {
       document.body.innerText = store.getState();
     };
@@ -112,9 +128,11 @@ tags: [Notebooks/Redux]
     document.addEventListener('click', () => {
       store.dispatch({ type: 'INCREMENT' });
     });
+  ```    
     
   The `createStore` method, if implemented from scratch, should look similar to this:
   
+```javascript  
     const createStore = (reducer) => {
       let state;
       let listeners = [];
@@ -137,20 +155,24 @@ tags: [Notebooks/Redux]
       dispatch({});
       // we want the store to have its initial state
     }
+```
     
 #### Reducer Composition
 
   The app's state tree can get quite big and complex after a while as different contextual states will be stored. Reducer Composition is a pattern that helps with scaling the Reducer function by having other more specific Reducer functions that handle parts of the state and together compose the whole state of the application.
   
   Taking a simple TODO app for example, the initial state should look like:
-   
+  
+ ```javascript  
     {
       todos: [],
       visibilityFilter: '',
     }
+ ```    
   
   and its reducer:
   
+```javascript  
     const todo = (
       state = {
         todos: [],
@@ -189,9 +211,11 @@ tags: [Notebooks/Redux]
           return state;
       }
     }
+```
     
   There's a lot going on here and this reducer function built like this ends up being a bit heavy in the eyes. What could be done to improve its readability and scalability is to segment it:
   
+```javascript  
     const todos = (state = [], action) => {
       switch (action.type) {
         case 'ADD_TODO':
@@ -213,9 +237,11 @@ tags: [Notebooks/Redux]
         default:
           return state;
     };
+```    
   
   this being the reducer that deals with the possible actions that mutate the `todos` array,
   
+  ```javascript  
     const visibilityFilter = (state = 'SHOW_ALL', action) => {
       switch (action.type) {
         case 'SET_VISIBILITY_FILTER':
@@ -224,11 +250,13 @@ tags: [Notebooks/Redux]
           return state;
       }
     };
+  ```
   
   and this is the one that deals with setting a new visibility filter.
   
   These more specific and contained reducers can be combined using the **reducer composition pattern** to create a new reducer that composes its results into a single state object.
   
+  ```javascript
     const todoApp = (state = {}, action) => {
       return {
         todos: todos(
@@ -241,3 +269,16 @@ tags: [Notebooks/Redux]
         ),
       }
     };
+  ```
+  
+  This is such a common Pattern that Redux has the `combineReducers()` function to do just that:
+  
+```javascript
+  	import { combineReducers } from 'Redux';
+  	
+  	const todoApp = combineReducers({
+  	  todos,
+  	  visibilityFilter,
+    });
+```
+   
