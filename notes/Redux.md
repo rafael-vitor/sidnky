@@ -12,10 +12,10 @@ tags: [Notebooks/Redux]
   Actions are plain objects describing the changes
 
   An action **should** have a type property:
-
+```javascript
     { type: "INCREMENT" }
     { type: "DECREMENT" }
-
+```
   and its required properties
 
     { type: "INCREMENT", index: 3 }
@@ -56,6 +56,7 @@ tags: [Notebooks/Redux]
     
   this function is called the **Reducer**
   
+  ```javascript
     const counter = (state = 0, action) => {
       switch (action.type) {
         case 'INCREMENT':
@@ -78,7 +79,7 @@ tags: [Notebooks/Redux]
     expect(
       counter(undefined, {})
     ).toEqual(0);
-    
+  ```
     
 #### The Store
 
