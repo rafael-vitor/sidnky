@@ -29,3 +29,8 @@ Contributions with links and tips on how to learn anything on the list are very 
       * Oficial docs - https://www.scala-lang.org/
       * Free book: https://underscore.io/books/essential-scala/
       * Collection of learning material - https://github.com/lauris/awesome-scala#learning-scala
+
+* **TypeScript** - Js that scales 
+    * Links and tips:
+      * Oficial docs - https://www.typescriptlang.org/docs/home.html
+      * Free book: https://github.com/basarat/typescript-book
